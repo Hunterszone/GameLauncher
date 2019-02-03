@@ -126,8 +126,7 @@ public class Launcher extends JFrame {
 
 		{
 			{
-				File f = new File("res/");
-
+				File f = new File("sounds/");
 				if (!f.exists()) {
 					if (!f.mkdir()) {
 						System.out.println("Unable to create dir!!");
@@ -139,8 +138,9 @@ public class Launcher extends JFrame {
 					System.out.println("Dir already exists");
 				}
 			}
+			
 			{
-				File f = new File("res/sounds/");
+				File f = new File("images/");
 				if (!f.exists()) {
 					if (!f.mkdir()) {
 						System.out.println("Unable to create dir!!");
@@ -156,16 +156,16 @@ public class Launcher extends JFrame {
 			progressBar.setValue(10);
 			try {
 				{
-					URL url = new URL("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/images.txt");
+					URL url = new URL("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/images/images.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
-					File fi = new File("res/images.txt");
+					File fi = new File("images/images.txt");
 					System.out.println((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/images.txt",
-								"res/images.txt", conn.getContentLength());
+						download("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/images/images.txt",
+								"images/images.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
 					}
@@ -174,16 +174,16 @@ public class Launcher extends JFrame {
 
 				{
 					URL url = new URL(
-							"https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/sounds.txt");
+							"https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/sounds/sounds.txt");
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setRequestMethod("HEAD");
-					File fi = new File("res/sounds/sounds.txt");
+					File fi = new File("sounds/sounds.txt");
 					System.out.println((fi.length() != conn.getContentLength()) + " " + fi.length() + " || "
 							+ conn.getContentLength());
 					if (!fi.exists() || fi.length() != conn.getContentLength()) {
 						System.out.println("Downloading resource!");
-						download("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/sounds.txt",
-								"res/sounds/sounds.txt", conn.getContentLength());
+						download("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/sounds/sounds.txt",
+								"sounds/sounds.txt", conn.getContentLength());
 					} else {
 						System.out.println("No need to download resource!");
 					}
@@ -207,17 +207,17 @@ public class Launcher extends JFrame {
 
 				}
 				progressBar.setValue(15);
-				ArrayList<String> downloadImg = readTextFile("res/images.txt");
-				ArrayList<String> downloadSounds = readTextFile("res/sounds/sounds.txt");
+				ArrayList<String> downloadImg = readTextFile("images/images.txt");
+				ArrayList<String> downloadSounds = readTextFile("sounds/sounds.txt");
 				ArrayList<String> downloadDLLs = readTextFile("dlls.txt");
 
 				for (final String str : downloadImg) {
 
-					URL url = new URL("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/res/" + str);
+					URL url = new URL("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/images/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
-					File fi = new File("res/" + str);
+					File fi = new File("images/" + str);
 					if (!fi.getParentFile().exists()) {
 						fi.getParentFile().mkdirs();
 					}
@@ -229,8 +229,8 @@ public class Launcher extends JFrame {
 						Thread t = new Thread() {
 							@Override
 							public void run() {
-								download("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/res/" + str,
-										"res/" + str, conn.getContentLength());
+								download("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/images/" + str,
+										"images/" + str, conn.getContentLength());
 							}
 						};
 						t.start();
@@ -244,11 +244,11 @@ public class Launcher extends JFrame {
 				}
 				for (final String str : downloadSounds) {
 
-					URL url = new URL("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/res/sounds/" + str);
+					URL url = new URL("https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/sounds/" + str);
 					final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //					progressBar.setValue(30);
 					conn.setRequestMethod("HEAD");
-					File fi = new File("res/sounds/" + str);
+					File fi = new File("sounds/" + str);
 					if (!fi.getParentFile().exists()) {
 						fi.getParentFile().mkdirs();
 					}
@@ -261,8 +261,8 @@ public class Launcher extends JFrame {
 							@Override
 							public void run() {
 								download(
-										"https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/res/sounds/" + str,
-										"res/sounds/" + str, conn.getContentLength());
+										"https://raw.githubusercontent.com/ENDPOINT-TO-RESOURCE/sounds/" + str,
+										"sounds/" + str, conn.getContentLength());
 							}
 						};
 						t.start();
