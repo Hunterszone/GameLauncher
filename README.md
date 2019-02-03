@@ -12,13 +12,13 @@ The tool automatically creates the required directories and reads the pre-define
 
 The tool consists of two classes:   
 
-Launcher.java, responsible for the online streaming and loading of the downloaded resources   
-UpdateLog.java, responsible for the generation and beautifying of the created log file, containing all streamed resources and their modifications   
+**Launcher.java**, responsible for the online streaming and loading of the downloaded resources   
+**UpdateLog.java**, responsible for the generation and beautifying of the created log file, containing all streamed resources and their modifications   
 
 The default resource files and folders are:   
 
-images/images.txt - contains the description of the images, that are used   
-sounds/sounds.txt - contains the description of the sounds, that are used   
-version.txt - contains the version of the compiled game; if the local version matches the version in the remote repository, then "up-to-date" is written inside the local version.txt   
+**images/images.txt** - contains the description of the images, that are used   
+**sounds/sounds.txt** - contains the description of the sounds, that are used   
+**version.txt** - contains the version of the compiled game; if the local version matches the version in the remote repository, then "up-to-date" is written inside the local version.txt   
 
 NB.: Of course, you could extend this structure further, so that it fits to your project.
